@@ -1,2 +1,2 @@
 # my-website
-I am making this to let my employers know that I know Github.
+This repository consists codes that I've written to build my website.
