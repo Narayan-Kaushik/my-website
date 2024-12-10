@@ -1,0 +1,531 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  overflow-x: hidden; /* Remove overflow: hidden */
+}
+
+/* Button Container */
+.button-container {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+  height: 75vh;
+  width: 75vh;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.image-button {
+  position: relative;
+  width: 200%;
+  height: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+
+.first-page {
+  position: relative; 
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+/* Canvas and Video Background */
+.canvas {
+  position: fixed;
+  top: 0;
+  left: calc(75vh + 5%);
+  width: calc(100% - (75vh + 5%));
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video covers entire canvas */
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 0.7; /* Adjust opacity as needed */
+  z-index: 1;
+}
+
+/* Text Overlay */
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+  max-width: 600px; /* Optional: limit text width */
+  padding: 0 5%;
+}
+
+/* Glitch Text Animation */
+@keyframes glitch-text {
+  0% {
+    text-shadow: 0.04em 0 0 rgba(255, 0, 0, 0.75), -0.04em 0 0 rgba(0, 255, 0, 0.75);
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+  5% {
+    text-shadow: 0.04em 0 0 rgba(255, 0, 0, 0.75), -0.04em 0 0 rgba(0, 255, 0, 0.75);
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+  10% {
+    text-shadow: 0.04em 0 0 rgba(255, 0, 0, 0.75), -0.04em 0 0 rgba(0, 255, 0, 0.75);
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+  15% {
+    text-shadow: -0.04em 0 0 rgba(0, 255, 0, 0.75), 0.04em 0 0 rgba(255, 0, 0, 0.75);
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+  20% {
+    text-shadow: -0.04em 0 0 rgba(0, 255, 0, 0.75), 0.04em 0 0 rgba(255, 0, 0, 0.75);
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+  25% {
+    text-shadow: 0.04em 0 0 rgba(0, 255, 0, 0.75), -0.04em 0 0 rgba(255, 0, 0, 0.75);
+    clip-path: polygon(0 50%, 100% 50%, 100% 65%, 0 65%);
+  }
+  30% {
+    text-shadow: 0.04em 0 0 rgba(0, 255, 0, 0.75), -0.04em 0 0 rgba(255, 0, 0, 0.75);
+    clip-path: polygon(0 50%, 100% 50%, 100% 65%, 0 65%);
+  }
+  35% {
+    text-shadow: -0.04em 0 0 rgba(255, 0, 0, 0.75), 0.04em 0 0 rgba(0, 255, 0, 0.75);
+    clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0 100%);
+  }
+  40% {
+    text-shadow: -0.04em 0 0 rgba(255, 0, 0, 0.75), 0.04em 0 0 rgba(0, 255, 0, 0.75);
+    clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0 100%);
+  }
+  45% {
+    text-shadow: 0.04em 0 0 rgba(0, 255, 0, 0.75), -0.04em 0 0 rgba(255, 0, 0, 0.75);
+  }
+  50% {
+    text-shadow: 0.04em 0 0 rgba(0, 255, 0, 0.75), -0.04em 0 0 rgba(255, 0, 0, 0.75);
+  }
+  55% {
+    text-shadow: 0.04em 0 0 rgba(255, 0, 0, 0.75), -0.04em 0 0 rgba(0, 255, 0, 0.75);
+  }
+  60% {
+    text-shadow: 0.04em 0 0 rgba(255, 0, 0, 0.75), -0.04em 0 0 rgba(0, 255, 0, 0.75);
+  }
+  65% {
+    text-shadow: -0.04em 0 0 rgba(0, 255, 0, 0.75), 0.04em 0 0 rgba(255, 0, 0, 0.75);
+  }
+  70% {
+    text-shadow: -0.04em 0 0 rgba(0, 255, 0, 0.75), 0.04em 0 0 rgba(255, 0, 0, 0.75);
+  }
+  75% {
+    text-shadow: 0.04em 0 0 rgba(255, 0, 0, 0.75), -0.04em 0 0 rgba(0, 255, 0, 0.75);
+  }
+  80% {
+    text-shadow: 0.04em 0 0 rgba(255, 0, 0, 0.75), -0.04em 0 0 rgba(0, 255, 0, 0.75);
+  }
+  85% {
+    text-shadow: -0.04em 0 0 rgba(0, 255, 0, 0.75), 0.04em 0 0 rgba(255, 0, 0, 0.75);
+  }
+  90% {
+    text-shadow: -0.04em 0 0 rgba(0, 255, 0, 0.75), 0.04em 0 0 rgba(255, 0, 0, 0.75);
+  }
+  95% {
+    text-shadow: 0.04em 0 0 rgba(255, 0, 0, 0.75), -0.04em 0 0 rgba(0, 255, 0, 0.75);
+  }
+  100% {
+    text-shadow: 0.04em 0 0 rgba(255, 0, 0, 0.75), -0.04em 0 0 rgba(0, 255, 0, 0.75);
+  }
+}
+
+/* Apply glitch to specific text elements */
+.portfolio-title {
+  font-family: 'SDGlitch2', sans-serif;
+  font-size: 6.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: white;
+  line-height: 1;
+  animation: glitch-text 2s infinite;
+  position: relative;
+}
+
+.skills-description {
+  font-family: 'Drexs', sans-serif;
+  font-size: 1.5rem;
+  margin-top: 15px;
+  font-weight: 400;
+  color: white;
+  line-height: 1.4;
+  animation: glitch-text 2s infinite;
+  position: relative;
+}
+
+.donut-highlight {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: white;
+  line-height: 1.4;
+}
+
+/* Neon Bars */
+.neon-bar {
+  position: absolute;
+  background: lime;
+  height: 5px;
+}
+
+.top-bar {
+  width: 50%;
+  top: 0;
+  left: 50%;
+}
+
+.right-bar {
+  width: 5px;
+  height: 50%;
+  right: 0;
+  top: 50%;
+}
+
+.bottom-bar {
+  width: 50%;
+  bottom: 0;
+  left: 50%;
+}
+
+.left-bar {
+  width: 5px;
+  height: 50%;
+  left: 0;
+  top: 50%;
+}
+
+/* Underline and Arrow Animations */
+.underline {
+  text-decoration: underline;
+  position: relative;
+  display: inline-block;
+}
+
+.underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: white;
+  left: 50%;
+  bottom: -5px;
+  animation: underline-grow 2s infinite;
+}
+
+
+
+@keyframes underline-grow {
+  0%, 100% { width: 0; }
+  50% {
+    width: 50%;
+    left: 25%;
+  }
+}
+
+@keyframes point-arrow {
+  from { transform: translateX(0); }
+  to { transform: translateX(10px); }
+}
+
+
+.second-page {
+  position: relative; /* Change from fixed to relative */
+  width: 100%;
+  min-height: 70vh; /* Ensure full viewport height */
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.second-page-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  padding: 0 5%;
+}
+
+.left-section,
+.right-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
+}
+
+.intro-name {
+  font-family: 'SDGlitch2', sans-serif;
+  font-size: 3rem;
+  line-height: 1.2;
+  color: white;
+  text-align: center;
+  max-width: 100%;
+}
+
+.intro-description {
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white;
+  text-align: left;
+  max-width: 500px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .second-page-container {
+    flex-direction: column;
+  }
+  
+  .left-section,
+  .right-section {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .intro-name {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .intro-description {
+    text-align: center;
+  }
+}
+
+
+.third-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  overflow: hidden;
+}
+
+.third-page-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.background-media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.background-image,
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.background-video {
+  display: none;
+}
+
+.button-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 50px;
+}
+
+.skills-button,
+.tools-button {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  background-color: rgba(128, 128, 128, 0.3);
+  border-radius: 20px;
+  padding: 30px;
+  transition: background-color 0.75s ease;
+  overflow: hidden;
+  border: 1px solid gold;
+}
+
+.skills-button:hover,
+.tools-button:hover {
+  background-color: transparent;
+}
+
+.button-heading {
+  text-align: center;
+  color: lime;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.button-content {
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkmark {
+  color: lime;
+  margin-right: 10px;
+  min-width: 20px; /* Ensures consistent spacing */
+  text-align: right;
+}
+
+.button-content p {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth; /* Smooth scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Ensure each page is full viewport height */
+.first-page,
+.second-page,
+.third-page,
+.fourth-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Ensures each page is at least full screen height */
+  overflow: hidden;
+}
+
+.fourth-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-container {
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.profile-section {
+  margin-bottom: 30px;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 20px;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-name {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.contact-button {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.contact-button i {
+  margin-right: 15px;
+  font-size: 24px;
+}
+
+.contact-details {
+  color: white;
+  font-size: 16px;
+}
+
+/* GitHub Icon Styling */
+.github-icon {
+  width: 26px; /* Set smaller width */
+  height: 26px; /* Set smaller height */
+  margin-right: 24px; /* Adjust spacing as needed */
+  vertical-align: middle; /* Align with text */
+}
+
+
+.copyright {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
