@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono:wght@400;700&display=swap');
+@import url('Your sources');
 
 * {
   margin: 0;
@@ -10,7 +10,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: black;
   color: white;
-  overflow-x: hidden; /* Remove overflow: hidden */
+  overflow-x: hidden;
 }
 
 /* Button Container */
